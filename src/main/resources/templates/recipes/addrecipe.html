@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Add Form</title>
+</head>
+<body bgcolor="#ff1493">
+<hr>
+<div class="container">
+    <h2>Recipe Form</h2>
+    <div>
+        <form action="#" th:action="@{/save_recipe}" th:object="${recipe}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" th:field="*{title}" placeholder="Title of recipe"><br>
+            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredients"><br>
+            <input type="text" th:field="*{kitchenAppliancesList}" placeholder="Kitchen appliance"><br>
+            <input type="text" th:field="*{descriptionOfPreparation}" placeholder="Description of preparation"><br>
+            <input type="text" th:field="*{preparingTimeInMinutes}" placeholder="Preparation time"><br>
+            <input type="text" th:field="*{cost}" placeholder="Cost"><br>
+            <input type="text" th:field="*{degree}" placeholder="Difficulty A - E"><br>
+
+            <input type="submit" th:value="Save">
+
+        </form>
+        <hr>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <style>
+        #container {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }  </style>
+
+    <title>Your recipe</title>
+</head>
+<body>
+<div id="container">
+show your recipe
+
+<table>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th> TITLE</th>
+        <th>TIME</th>
+        <th>COST</th>
+        <th>DIFFICULTY</th>
+        <div style="clear: both"></div>
+    </tr>
+    </thead>
+    <tbody>
+    <!--*******************************************************-->
+
+
+    <!--        ???????????????????????-->
+
+    <tr data-th-each="item : ${recipesList}"
+
+        th:if="${item.id} ==  ${item.id}">
+
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.title}"></td>
+        <td th:text="${item.preparingTimeInMinutes}"></td>
+        <td th:text="${item.cost}"></td>
+        <td th:text="${item.degree}"></td>
+
+    </tr>
+
+    </tbody>
+</table>
+</div>
+
+</body>
+
+</html>
