@@ -25,7 +25,7 @@
         #work_space {
             float: left;
             background-color: lightgray;
-            width: 400px;
+            width: 300px;
             min-height: 620px;
             padding: 10px;
         }
@@ -34,7 +34,7 @@
             float: left;
             padding: 20px;
             min-height: 620px;
-            width: 540px;
+            width: 640px;
             background-color: greenyellow;
         }
 
@@ -51,6 +51,11 @@
             width: 20%;
             float: left;
         }
+        a.tilelink
+        {
+            color: black;
+            text-decoration: none;
+        }
 
 
     </style>
@@ -66,7 +71,7 @@
     </div>
 
     <div id="work_space">
-        <a href="addrecipe.html">add recipes</a>
+        <a href="addrecipe.html" class="tilelink">ADD RECIPE</a>
 
     </div>
 
@@ -109,7 +114,8 @@
                         <input type="hidden" th:name="recipe_id" th:value="${item.id}">
                         <input type="submit" value="DELETE">
                     </form>
-
+                </td>
+                <td>
                     <form method="post" th:action="@{/edit_recipe}">
                         <input type="hidden" th:name="recipe_id" th:value="${item.id}">
                         <input type="submit" value="EDIT">

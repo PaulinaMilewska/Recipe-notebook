@@ -72,12 +72,11 @@ public class RecipeController {
 //        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
         return new ModelAndView("redirect:/viewrecipes");
     }
-
+        Recipe recipe1 = new Recipe();
     @RequestMapping(value = "/viewone", method = RequestMethod.POST)
     public ModelAndView show(@RequestParam(value = "recipe_id") String recipe_id) {
-
-//        recipesList.get(getRecipesById(Integer.parseInt(recipe_id)).getId());
-        return new ModelAndView("recipes/viewone", "recipesList", recipesList);
+        recipe1 = recipesList.get(getRecipesById(Integer.parseInt(recipe_id)).getId()-1);
+        return new ModelAndView("recipes/viewone", "recipe1", recipe1);
     }
 
 //    @RequestMapping(value = "/viewone", method = RequestMethod.GET)

@@ -23,6 +23,9 @@ show your recipe
     <tr>
         <th>ID</th>
         <th> TITLE</th>
+        <th> INGREDIENTS</th>
+        <th> KITCHEN APPLIANCE</th>
+        <th> DESCRIPTION</th>
         <th>TIME</th>
         <th>COST</th>
         <th>DIFFICULTY</th>
@@ -32,18 +35,18 @@ show your recipe
     <tbody>
     <!--*******************************************************-->
 
+    <tr>
 
-    <!--        ???????????????????????-->
+        <td th:text="${recipe1.id}"></td>
+        <td th:text="${recipe1.title}"></td>
+        <td th:text="${recipe1.ingredientsList}"></td>
+        <td th:text="${recipe1.kitchenAppliancesList}"></td>
+        <td th:text="${recipe1.descriptionOfPreparation}"></td>
+        <td th:text="${recipe1.preparingTimeInMinutes}"></td>
+        <td th:text="${recipe1.cost}"></td>
+        <td th:text="${recipe1.degree}"></td>
 
-    <tr data-th-each="item : ${recipesList}"
 
-        th:if="${item.id} ==  ${item.id}">
-
-        <td th:text="${item.id}"></td>
-        <td th:text="${item.title}"></td>
-        <td th:text="${item.preparingTimeInMinutes}"></td>
-        <td th:text="${item.cost}"></td>
-        <td th:text="${item.degree}"></td>
 
     </tr>
 
