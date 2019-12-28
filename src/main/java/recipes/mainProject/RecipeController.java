@@ -52,6 +52,7 @@ public class RecipeController {
 
     @RequestMapping(value = "/viewrecipes", method = RequestMethod.GET)
     public ModelAndView viewrecipes(Model model) {
+//        model.addAttribute("newRecipe", new Recipe());
         return new ModelAndView("recipes/viewrecipes", "recipesList", recipesList);
     }
 

@@ -1,18 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Recipe Add Form</title>
+    <style>
+        #container {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #block {
+            /*width: 600px;*/
+            /*height: 100px;*/
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+        }
+    </style>
 </head>
-<body bgcolor="#ff1493">
+<body bgcolor=#808080>
 <hr>
-<div class="container">
+<div id="container">
     <h2>Recipe Form</h2>
-    <div>
+    <div style="display: inline; width: auto;">
+<!--        <form action="/save_recipe" th:object="${newIngredient}" method="post"></form>-->
+
+
         <form action="#" th:action="@{/save_recipe}" th:object="${recipe}" method="post">
+
+
             <input type="hidden" th:field="*{id}">
             <input type="text" th:field="*{title}" placeholder="Title of recipe"><br>
-            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredients"><br>
+            <p> Add ingredient: </p>
+<!--            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredients"><br>-->
+<!--            [Ingredient{id=1, name='tomato', quantity=5.0, measure=PIECE}, Ingredient{id=3, name='broth', quantity=1.0, measure=LITER}]-->
+            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredient id"><br>
+            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredient name"><br>
+            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredient quantity"><br>
+            <input type="text" th:field="*{ingredientsList}" placeholder="Ingredient measure"><br>
+            <p> </p>
             <input type="text" th:field="*{kitchenAppliancesList}" placeholder="Kitchen appliance"><br>
             <input type="text" th:field="*{descriptionOfPreparation}" placeholder="Description of preparation"><br>
             <input type="text" th:field="*{preparingTimeInMinutes}" placeholder="Preparation time"><br>
