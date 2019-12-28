@@ -14,19 +14,32 @@ import java.util.List;
 @Controller
 public class RecipeController {
     public List<Recipe> recipesList;
-    public List<String> ingredients; ;
+    public List<Ingredient> ingredientsForTomatoSoup;
+    public List<Ingredient> ingredientsForCucumberSoup;
     public List<String> kitchenAppliancesList;
 
 
     public RecipeController() {
         recipesList = new ArrayList<>();
-        ingredients = new ArrayList<>();
-        ingredients.add("pomidor" );
-        ingredients.add("cebula");
+        ingredientsForTomatoSoup = new ArrayList<>();
+        ingredientsForCucumberSoup = new ArrayList<>();
+
+        Ingredient tomato = new Ingredient((long) 1, "tomato", 5, Measure.PIECE);
+        Ingredient cucumber = new Ingredient((long) 1, "cucumber", 10, Measure.PIECE);
+        Ingredient salt = new Ingredient((long) 2, "salt", 2, Measure.SALTSPOON);
+        Ingredient broth = new Ingredient((long) 3, "broth", 1, Measure.LITER);
+        Ingredient carrot = new Ingredient((long) 4, "carrot", 2, Measure.PIECE);
+
+        ingredientsForTomatoSoup.add(tomato);
+        ingredientsForTomatoSoup.add(broth);
+        ingredientsForCucumberSoup.add(broth);
+        ingredientsForCucumberSoup.add(cucumber);
+        ingredientsForCucumberSoup.add(salt);
+
         kitchenAppliancesList = new ArrayList<>();
         kitchenAppliancesList.add("pot");
-        recipesList.add(new Recipe("Pomidorowa", ingredients, kitchenAppliancesList, "cook", 50, 100, DegreesOfDifficulty.C  ));
-        recipesList.add(new Recipe("Ogórkowa", ingredients, kitchenAppliancesList, "cook carefully", 30, 24, DegreesOfDifficulty.B  ));
+        recipesList.add(new Recipe("Tomato soup", ingredientsForTomatoSoup, kitchenAppliancesList, "Add tomatoes to broth. Cook on small fire.", 50, 100, DegreesOfDifficulty.C.getDifficultyDescription()  ));
+        recipesList.add(new Recipe("Cucumber soup", ingredientsForCucumberSoup, kitchenAppliancesList, "Add cucumbers to hot broth. Cook for 30 minuts.", 30, 24, DegreesOfDifficulty.B.getDifficultyDescription()  ));
 
     }
 
@@ -56,7 +69,7 @@ public class RecipeController {
         if (recipe.getId() < 1){
             recipe.setId(Recipe.index++);
             System.out.printf("Adding the new recipe");
-            recipe.setId(recipesList.size()+1);
+            recipe.setId(Long.valueOf(recipesList.size()+1));
             recipesList.add(recipe);
         } else {
             Recipe recipeTemp = getRecipesById(recipe.getId());
@@ -75,7 +88,7 @@ public class RecipeController {
         Recipe recipe1 = new Recipe();
     @RequestMapping(value = "/viewone", method = RequestMethod.POST)
     public ModelAndView show(@RequestParam(value = "recipe_id") String recipe_id) {
-        recipe1 = recipesList.get(getRecipesById(Integer.parseInt(recipe_id)).getId()-1);
+        recipe1 = recipesList.get(Math.toIntExact(getRecipesById(Long.valueOf(Integer.parseInt(recipe_id))).getId() - 1));
         return new ModelAndView("recipes/viewone", "recipe1", recipe1);
     }
 
@@ -88,17 +101,17 @@ public class RecipeController {
 
     @RequestMapping(value = "/delete_recipe", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam(value = "recipe_id") String recipe_id) {
-        recipesList.remove(getRecipesById(Integer.parseInt(recipe_id)));
+        recipesList.remove(getRecipesById(Long.valueOf(Integer.parseInt(recipe_id))));
         return new ModelAndView("redirect:/viewrecipes");
     }
 
     @RequestMapping(value = "/edit_recipe")
     public ModelAndView editing(@RequestParam(value = "recipe_id") String recipe_id) {
-        Recipe recipe = getRecipesById(Integer.parseInt(recipe_id));
+        Recipe recipe = getRecipesById(Long.valueOf(Integer.parseInt(recipe_id)));
         return new ModelAndView("recipes/addrecipe", "recipe", recipe);
     }
 
-    private Recipe getRecipesById(@RequestParam int id){
+    private Recipe getRecipesById(@RequestParam Long id){
         return recipesList.stream().filter(f->f.getId() == id).findFirst().get();
     }
 }
