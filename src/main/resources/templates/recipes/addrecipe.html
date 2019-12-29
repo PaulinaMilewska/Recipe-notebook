@@ -35,14 +35,18 @@
             <input type="submit" th:value="Save">
         </form>
 
-        <form action="#" th:action="@{/save_recipe}" th:object="${newIngredient}" method="post">
-            <p>Ingredient id <input type="text" th:field="*{id}"></p>
-            <p>Ingredient name <input type="text" th:field="*{name}"></p>
-            <p>Ingredient quantity <input type="text" th:field="*{quantity}"></p>
-            <p>Ingredient measure <input type="text" th:field="*{measure}"></p>
-            <p><input type="submit" value="Add ingredient"></p>
-        </form>
 
+<!--        <tbody>-->
+
+<!--        &lt;!&ndash;/*@thymesVar id="ingredientList" type="java"*/&ndash;&gt;-->
+<!--        <tr data-th-each="item : ${ingredientList}">-->
+<!--            <td th:text="${item.id}"></td>-->
+<!--            <td th:text="${item.name}"></td>-->
+<!--            <td th:text="${item.quantity}"></td>-->
+<!--            <td th:text="${item.measure}"></td>-->
+
+<!--        </tr>-->
+<!--        </tbody>-->
         <hr>
     </div>
 </div>

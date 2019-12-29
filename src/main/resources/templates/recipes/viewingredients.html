@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All ingredients list</title>
+</head>
+<body>
+
+<div>
+
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th> NAME</th>
+            <th>QUANTITY</th>
+            <th>MEASURE</th>
+
+            <!--                <a href="viewone.html"> napis </a>-->
+
+<!--            <div style="clear: both"></div>-->
+        </tr>
+        </thead>
+        <tbody>
+        <!--*******************************************************-->
+
+        <tr data-th-each="item : ${ingredientList}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.measure}"></td>
+
+<!--            <td>-->
+<!--                <form method="post" th:action="@{/viewone}">-->
+<!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+<!--                    <input type="submit" value="SHOW">-->
+<!--                </form>-->
+<!--            </td>-->
+
+<!--            <td>-->
+<!--                <form method="post" th:action="@{/delete_recipe}">-->
+<!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+<!--                    <input type="submit" value="DELETE">-->
+<!--                </form>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <form method="post" th:action="@{/edit_recipe}">-->
+<!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+<!--                    <input type="submit" value="EDIT">-->
+<!--                </form>-->
+<!--            </td>-->
+        </tr>
+        <!--*******************************************************-->
+
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

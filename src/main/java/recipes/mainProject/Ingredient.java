@@ -16,11 +16,13 @@ public class Ingredient {
 //    @JoinColumn (name = "recipe_id")
 //    private Recipe recipe;
 
+    public static Long index = Long.valueOf(1);
+
     public Ingredient() {
     }
 
-    public Ingredient(Long id, String name, double quantity, Measure measure) {
-        this.id = id;
+    public Ingredient( String name, double quantity, Measure measure) {
+        this.id = index++;
         this.name = name;
         this.quantity = quantity;
         this.measure = measure;

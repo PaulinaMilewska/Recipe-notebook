@@ -52,8 +52,8 @@
             width: 20%;
             float: left;
         }
-        a.tilelink
-        {
+
+        a.tilelink {
             color: black;
             text-decoration: none;
         }
@@ -73,14 +73,15 @@
 
     </div>
 
-    <div id="work_space">
-        <a href="addrecipe.html" class="tilelink">ADD RECIPE</a>
 
-    </div>
 
     <div id="content">
         <h3>Your recipes list</h3>
-
+        <p></p>
+        <p></p>
+        <a href="addrecipe.html" class="tilelink">ADD RECIPE</a>
+        <p></p>
+        <p></p>
         <table>
 
             <thead>
@@ -130,37 +131,36 @@
 
             </tbody>
         </table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th> NAME</th>
-            <th>QUANTITY</th>
-            <th>MEASURE</th>
+        <!--        <thead>-->
+        <!--        <tr>-->
+        <!--            <th>ID</th>-->
+        <!--            <th> NAME</th>-->
+        <!--            <th>QUANTITY</th>-->
+        <!--            <th>MEASURE</th>-->
 
-            <div style="clear: both"></div>
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-th-each="item : ${ingredientsList}">
-            <td th:text="${item}"></td>
-            <td th:text="${item.title}"></td>
-            <td th:text="${item.preparingTimeInMinutes}"></td>
-            <td th:text="${item.cost}"></td>
-            <td th:text="${item.degree}"></td>
+        <!--            <div style="clear: both"></div>-->
+        <!--        </tr>-->
+        <!--        </thead>-->
+        <!--        <tbody>-->
+        <!--        <tr data-th-each="item : ${ingredientsList}">-->
+        <!--            <td th:text="${item}"></td>-->
+        <!--            <td th:text="${item.title}"></td>-->
+        <!--            <td th:text="${item.preparingTimeInMinutes}"></td>-->
+        <!--            <td th:text="${item.cost}"></td>-->
+        <!--            <td th:text="${item.degree}"></td>-->
 
-        </tr>
+        <!--        </tr>-->
+        <!--        </tbody>-->
 
+        <!--        <table>-->
+        <!--            <h1>Your ingredients </h1>-->
+        <!--        </table>-->
+    </div>
 
+    <div id="work_space">
+        <h2>CALCULATORS</h2>
+                <a href="bmi.html" class="tilelink">BMI</a>
 
-        </tbody>
-
-        <table>
-            <h1>Your ingredients </h1>
-
-
-
-
-        </table>
     </div>
 
     <div id="footer">

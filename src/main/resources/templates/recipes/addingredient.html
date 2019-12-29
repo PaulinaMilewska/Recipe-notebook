@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredient Form</title>
+</head>
+<body>
+<div>
+    <h2>Recipe Form</h2>
+
+    <form action="#" th:action="@{/save_ingredient}" th:object="${ingredient}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{name}" placeholder="Name of ingredient"><br>
+        <input type="text" th:field="*{quantity}" placeholder="Quantity"><br>
+        <input type="text" th:field="*{measure}" placeholder="Measure"><br>
+        <input type="submit" th:value="Save">
+    </form>
+</div>
+</body>
+</html>
