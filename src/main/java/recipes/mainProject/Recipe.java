@@ -2,18 +2,24 @@ package recipes.mainProject;
 
 import org.hibernate.validator.internal.constraintvalidators.bv.past.PastValidatorForReadableInstant;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//@Entity
 public class Recipe {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
+//    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ingredient> ingredientsList;
-    private List<String> kitchenAppliancesList;
+
     private String descriptionOfPreparation;
     private int preparingTimeInMinutes;
     private double cost;
-//    private DegreesOfDifficulty degree;
+    //    private DegreesOfDifficulty degree;
     private String degree;
 
     public static Long index = Long.valueOf(1);
@@ -22,7 +28,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String title, List<Ingredient> ingredientsList, List<String> kitchenAppliancesList,
+    public Recipe(String title, List<Ingredient> ingredientsList,
                   String descriptionOfPreparation, int preparingTimeInMinutes, double cost,
 //                  DegreesOfDifficulty degree
                   String degree
@@ -30,7 +36,6 @@ public class Recipe {
         this.id = index++;
         this.title = title;
         this.ingredientsList = ingredientsList;
-        this.kitchenAppliancesList = kitchenAppliancesList;
         this.descriptionOfPreparation = descriptionOfPreparation;
         this.preparingTimeInMinutes = preparingTimeInMinutes;
         this.cost = cost;
@@ -54,6 +59,9 @@ public class Recipe {
     }
 
     public List<Ingredient> getIngredientsList() {
+        if (ingredientsList == null) {
+            ingredientsList = new ArrayList<>();
+        }
         return ingredientsList;
     }
 
@@ -61,13 +69,6 @@ public class Recipe {
         this.ingredientsList = ingredientsList;
     }
 
-    public List<String> getKitchenAppliancesList() {
-        return kitchenAppliancesList;
-    }
-
-    public void setKitchenAppliancesList(List<String> kitchenAppliancesList) {
-        this.kitchenAppliancesList = kitchenAppliancesList;
-    }
 
     public String getDescriptionOfPreparation() {
         return descriptionOfPreparation;
@@ -117,14 +118,13 @@ public class Recipe {
                 Objects.equals(id, recipe.id) &&
                 Objects.equals(title, recipe.title) &&
                 Objects.equals(ingredientsList, recipe.ingredientsList) &&
-                Objects.equals(kitchenAppliancesList, recipe.kitchenAppliancesList) &&
                 Objects.equals(descriptionOfPreparation, recipe.descriptionOfPreparation) &&
                 degree == recipe.degree;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, ingredientsList, kitchenAppliancesList, descriptionOfPreparation, preparingTimeInMinutes, cost, degree);
+        return Objects.hash(id, title, ingredientsList, descriptionOfPreparation, preparingTimeInMinutes, cost, degree);
     }
 
     @Override
@@ -133,7 +133,6 @@ public class Recipe {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", ingredientsList=" + ingredientsList +
-                ", kitchenAppliancesList=" + kitchenAppliancesList +
                 ", descriptionOfPreparation='" + descriptionOfPreparation + '\'' +
                 ", preparingTimeInMinutes=" + preparingTimeInMinutes +
                 ", cost=" + cost +

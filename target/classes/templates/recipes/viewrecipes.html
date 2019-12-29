@@ -128,18 +128,38 @@
             <!--*******************************************************-->
 
 
-            <!--<div class="block">-->
-            <!--                <input type="text" value="${recipesList}">-->
-            <!--                &lt;!&ndash;            <input type="text" value="recipes : ${recipesList}">&ndash;&gt;-->
-
-
-            <!--            </div>-->
-            <!--            <div class="block">TITLE</div>-->
-            <!--            <div class="block">TIME</div>-->
-            <!--            <div class="block">COST</div>-->
-            <!--            <div class="block">DIFFICULTY</div>-->
-
             </tbody>
+        </table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th> NAME</th>
+            <th>QUANTITY</th>
+            <th>MEASURE</th>
+
+            <div style="clear: both"></div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="item : ${ingredientsList}">
+            <td th:text="${item}"></td>
+            <td th:text="${item.title}"></td>
+            <td th:text="${item.preparingTimeInMinutes}"></td>
+            <td th:text="${item.cost}"></td>
+            <td th:text="${item.degree}"></td>
+
+        </tr>
+
+
+
+        </tbody>
+
+        <table>
+            <h1>Your ingredients </h1>
+
+
+
+
         </table>
     </div>
 

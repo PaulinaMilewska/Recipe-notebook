@@ -1,12 +1,20 @@
 package recipes.mainProject;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+//@Entity
 public class Ingredient {
+//    @Id
+//    @GeneratedValue (strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private double quantity;
+//    @Enumerated(EnumType.STRING)
     private Measure measure;
+//    @ManyToOne
+//    @JoinColumn (name = "recipe_id")
+//    private Recipe recipe;
 
     public Ingredient() {
     }
@@ -21,6 +29,14 @@ public class Ingredient {
     public Long getId() {
         return id;
     }
+
+//    public Recipe getRecipe() {
+//        return recipe;
+//    }
+//
+//    public void setRecipe(Recipe recipe) {
+//        this.recipe = recipe;
+//    }
 
     public void setId(Long id) {
         this.id = id;
