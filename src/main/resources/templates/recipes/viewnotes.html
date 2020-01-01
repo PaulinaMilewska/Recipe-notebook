@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All notes</title>
+</head>
+<body>
+<div>
+    <a href="addnote.html" class="tilelink">ADD NEW NOTE</a><br><br>
+
+
+</div>
+
+<div>
+
+
+    <table>
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th> TITLE</th>
+            <th>TIME</th>
+            <th>COST</th>
+            <th>DIFFICULTY</th>
+            <th>INGREDIENTS</th>
+            <!--            <th>NAME</th>-->
+            <!--            <th>QTY</th>-->
+            <!--            <th>MEASURE</th>-->
+
+            <!--                <a href="viewone.html"> napis </a>-->
+
+            <!--            <div style="clear: both"></div>-->
+        </tr>
+        </thead>
+        <tbody>
+        <!--*******************************************************-->
+
+        <tr data-th-each="item : ${noteList}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.recipe.title}"></td>
+            <td th:text="${item.recipe.preparingTimeInMinutes}"></td>
+            <td th:text="${item.recipe.cost}"></td>
+            <td th:text="${item.recipe.degree}"></td>
+            <!--            <td th:text="${item.ingredientList}"></td>-->
+            <td data-th-each="itemStatus : ${item.ingredientList}">
+                <!--                <th:block th:text="*{item.ingredientList[__${itemStat}__].name}"></th:block>-->
+                <!--                <th:block th:field="*{item.ingredientList[__${itemStat}__].quantity}"></th:block>-->
+                <!--                <th:block th:field="*{item.ingredientList[__${itemStat}__].measure}"></th:block>-->
+                <!--            </td>-->
+
+<!--            <td th:each="itemStat : ${item.ingredientList}">-->
+
+
+                <p th:text="|Name: ${itemStatus.name} |"></p>
+                <p th:text="|Qty: ${itemStatus.quantity} |"></p>
+                <p th:text="|Measure: ${itemStatus.measure} |"></p><br>
+<!--            </td>-->
+
+            <!--            <td th:each="itemStatus : ${item.ingredientList}" th:text="|${itemStatus.quantity} |"></td>-->
+            <!--            <td th:each="itemStatus : ${item.ingredientList}" th:text="|${itemStatus.measure}|"></td>-->
+
+            <!--            </td>-->
+
+            </td>
+            <td>
+                <form method="post" th:action="@{/addingredient}">
+                    <input type="hidden" th:name="note_id" th:value="${item.id}">
+                    <input type="submit" value="ADD INGREDIENT">
+                </form>
+
+            </td>
+
+        </tr>
+
+
+<!--        <th>INGREDIENTS</th>-->
+<!--        <tr data-th-each="item : ${noteList}">-->
+<!--            <td data-th-each="itemStatus : ${item.ingredientList}">-->
+<!--                <p th:text="|Name of ${itemStatus.id}-th ingredient: ${itemStatus.name} |"></p>-->
+<!--                <p th:text="|Qty: ${itemStatus.quantity} |"></p>-->
+<!--                <p th:text="|Measure: ${itemStatus.measure} |"></p><br>-->
+
+<!--            </td>-->
+<!--        </tr>-->
+
+        <!--            <td>-->
+        <!--                <form method="post" th:action="@{/viewone}">-->
+        <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+        <!--                    <input type="submit" value="SHOW">-->
+        <!--                </form>-->
+        <!--            </td>-->
+
+        <!--            <td>-->
+        <!--                <form method="post" th:action="@{/delete_recipe}">-->
+        <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+        <!--                    <input type="submit" value="DELETE">-->
+        <!--                </form>-->
+        <!--            </td>-->
+        <!--            <td>-->
+        <!--                <form method="post" th:action="@{/edit_recipe}">-->
+        <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
+        <!--                    <input type="submit" value="EDIT">-->
+        <!--                </form>-->
+        <!--            </td>-->
+        </th>
+
+        <!--*******************************************************-->
+
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

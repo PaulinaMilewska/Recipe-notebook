@@ -24,24 +24,24 @@ public class RecipeController {
 
     public RecipeController() {
         recipesList = new ArrayList<>();
-        ingredientsForTomatoSoup = new ArrayList<>();
-        ingredientsForCucumberSoup = new ArrayList<>();
+//        ingredientsForTomatoSoup = new ArrayList<>();
+//        ingredientsForCucumberSoup = new ArrayList<>();
+//
+//        Ingredient tomato = new Ingredient( "tomato", 5, Measure.PIECE);
+//        Ingredient cucumber = new Ingredient( "cucumber", 10, Measure.PIECE);
+//        Ingredient salt = new Ingredient( "salt", 2, Measure.SALTSPOON);
+//        Ingredient broth = new Ingredient( "broth", 1, Measure.LITER);
+//        Ingredient carrot = new Ingredient( "carrot", 2, Measure.PIECE);
+//
+//        ingredientsForTomatoSoup.add(tomato);
+//        ingredientsForTomatoSoup.add(broth);
+//        ingredientsForCucumberSoup.add(broth);
+//        ingredientsForCucumberSoup.add(cucumber);
+//        ingredientsForCucumberSoup.add(salt);
 
-        Ingredient tomato = new Ingredient( "tomato", 5, Measure.PIECE);
-        Ingredient cucumber = new Ingredient( "cucumber", 10, Measure.PIECE);
-        Ingredient salt = new Ingredient( "salt", 2, Measure.SALTSPOON);
-        Ingredient broth = new Ingredient( "broth", 1, Measure.LITER);
-        Ingredient carrot = new Ingredient( "carrot", 2, Measure.PIECE);
 
-        ingredientsForTomatoSoup.add(tomato);
-        ingredientsForTomatoSoup.add(broth);
-        ingredientsForCucumberSoup.add(broth);
-        ingredientsForCucumberSoup.add(cucumber);
-        ingredientsForCucumberSoup.add(salt);
-
-
-        recipesList.add(new Recipe("Tomato soup", ingredientsForTomatoSoup, "Add tomatoes to broth. Cook on small fire.", 50, 100, DegreesOfDifficulty.C.getDifficultyDescription()));
-        recipesList.add(new Recipe("Cucumber soup", ingredientsForCucumberSoup,  "Add cucumbers to hot broth. Cook for 30 minuts.", 30, 24, DegreesOfDifficulty.B.getDifficultyDescription()));
+        recipesList.add(new Recipe("Tomato soup",  "Add tomatoes to broth. Cook on small fire.", 50, 100, DegreesOfDifficulty.C.getDifficultyDescription()));
+        recipesList.add(new Recipe("Cucumber soup",   "Add cucumbers to hot broth. Cook for 30 minuts.", 30, 24, DegreesOfDifficulty.B.getDifficultyDescription()));
 
     }
 
@@ -64,25 +64,23 @@ public class RecipeController {
         return new ModelAndView("recipes/addrecipe", "recipe", new Recipe());
     }
 
-
-
     @RequestMapping(value = "/save_recipe")
     public ModelAndView save(@ModelAttribute(value = "recipe") Recipe recipe) {
 
-        if (recipe.getId() < 1) {
+//        if (recipe.getId() < 1) {
             recipe.setId(Recipe.index++);
             System.out.printf("Adding the new recipe");
             recipe.setId(Long.valueOf(recipesList.size() + 1));
             recipesList.add(recipe);
-        } else {
-            Recipe recipeTemp = getRecipesById(recipe.getId());
-            recipeTemp.setTitle(recipe.getTitle());
-            recipeTemp.setIngredientsList(recipe.getIngredientsList());
-            recipeTemp.setDescriptionOfPreparation(recipe.getDescriptionOfPreparation());
-            recipeTemp.setPreparingTimeInMinutes(recipe.getPreparingTimeInMinutes());
-            recipeTemp.setCost(recipe.getCost());
-            recipeTemp.setDegree(recipe.getDegree());
-        }
+//        } else {
+//            Recipe recipeTemp = getRecipesById(recipe.getId());
+//            recipeTemp.setTitle(recipe.getTitle());
+////            recipeTemp.setIngredientsList(recipe.getIngredientsList());
+//            recipeTemp.setDescriptionOfPreparation(recipe.getDescriptionOfPreparation());
+//            recipeTemp.setPreparingTimeInMinutes(recipe.getPreparingTimeInMinutes());
+//            recipeTemp.setCost(recipe.getCost());
+//            recipeTemp.setDegree(recipe.getDegree());
+//        }
 //        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
         return new ModelAndView("redirect:/viewrecipes");
     }

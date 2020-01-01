@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import recipes.mainProject.Ingredient;
 import recipes.mainProject.Measure;
-import recipes.mainProject.Recipe;
+import recipes.mainProject.Note;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class IngredientController {
+    Note note;
+//    List<Ingredient> list;
     public static List<Ingredient> ingredientList;
     public IngredientController() {
         ingredientList = new ArrayList<>();
@@ -23,7 +26,6 @@ public class IngredientController {
         ingredientList.add(new Ingredient( "salt", 2, Measure.SALTSPOON));
         ingredientList.add(new Ingredient( "broth", 1, Measure.LITER));
         ingredientList.add(new Ingredient( "carrot", 2, Measure.PIECE));
-
     }
 
     @RequestMapping(value = "/viewingredients", method = RequestMethod.GET)
@@ -31,34 +33,45 @@ public class IngredientController {
         return new ModelAndView("recipes/viewingredients", "ingredientList", ingredientList);
     }
 
-    @RequestMapping(value = "/addingredient")
-    public ModelAndView showForm() {
-        return new ModelAndView("recipes/addingredient", "ingredient", new Ingredient());
-    }
+//    @RequestMapping(value = "/add_to_note")
+//    public ModelAndView showForm(@RequestParam(value = "note_id") String note_id) {
+//        Note note1 = getNoteById(Integer.parseInt(note_id));
+//        List<Ingredient> note1list = note1.getIngredientList();
+//        Ingredient ingredient1 = new Ingredient();
+//        note1list.add(ingredient1);
+//        return new ModelAndView("add_to_note", "ingredient", ingredient1);
+//    }
 
-    @RequestMapping(value = "/save_ingredient")
-    public ModelAndView saveIng(@ModelAttribute(value = "ingredient") Ingredient ingredient) {
-
-//        if (ingredient.getId() < 1) {
-            ingredient.setId(Ingredient.index++);
-            System.out.printf("Adding the new recipe");
-            ingredient.setId(Long.valueOf(ingredientList.size() + 1));
-            ingredientList.add(ingredient);
-//        } else {
-//            Ingredient ingredientTemp = getIngredientById(ingredient.getId());
-//            ingredientTemp.setName(ingredient.getName());
-//            ingredientTemp.setQuantity(ingredient.getQuantity());
-//            ingredientTemp.setMeasure(ingredient.getMeasure());
+//    @RequestMapping(value = "/save_ingredient")
+//    public ModelAndView saveIng(@ModelAttribute(value = "ingredient") Ingredient ingredient) {
 //
-//        }
-//        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
-        return new ModelAndView("redirect:/viewingredients");
-    }
+//
+////        if (ingredient.getId() < 1) {
+//            ingredient.setId(Ingredient.index++);
+//            System.out.printf("Adding the new recipe");
+//            ingredient.setId(Long.valueOf(ingredientList.size() + 1));
+//            ingredientList.add(ingredient);
+//            note = new Note();
+//            note.setIngredientList(ingredientList);
+////        } else {
+////            Ingredient ingredientTemp = getIngredientById(ingredient.getId());
+////            ingredientTemp.setName(ingredient.getName());
+////            ingredientTemp.setQuantity(ingredient.getQuantity());
+////            ingredientTemp.setMeasure(ingredient.getMeasure());
+////
+////        }
+////        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
+//        return new ModelAndView("redirect:/viewnotes");
+//    }
 
 
     private Ingredient getIngredientById(@RequestParam Long id) {
         return ingredientList.stream().filter(f -> f.getId() == id).findFirst().get();
     }
+
+//    private Note getNoteById(@RequestParam int id) {
+//        return NoteController.noteList.stream().filter(f -> f.getId() == id).findFirst().get();
+//    }
     }
 
 
