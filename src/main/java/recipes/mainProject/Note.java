@@ -1,5 +1,6 @@
 package recipes.mainProject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Note {
@@ -13,6 +14,7 @@ public class Note {
         this.id = index++;
         this.recipe = recipe;
         this.ingredientList = ingredientList;
+        ingredientList= new ArrayList<>();
     }
 
     public Note() {

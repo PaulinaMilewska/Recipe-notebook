@@ -13,16 +13,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static recipes.controllers.IngredientController.ingredientList;
+//import static recipes.controllers.IngredientController.ingredientList;
 
 @Controller
 public class NoteController {
     public List<Ingredient> itemIngredientList;
+    public List<Ingredient> ingredientList;
     public List<Note> noteList;
-    List<Ingredient> list;
-    Recipe recipe;
-    Note note1;
-    private String note_id;
+    public List<Ingredient> list;
+    public Recipe recipe;
+    public Note note1;
+    //    public static String note_id;
     private Ingredient ingredient;
 
     public NoteController() {
@@ -32,8 +33,11 @@ public class NoteController {
         list.add(new Ingredient("mushroom", 5, Measure.PIECE));
         list.add(new Ingredient("broth", 1, Measure.LITER));
 
+
         noteList = new ArrayList<>();
         noteList.add(new Note(recipe, list));
+        itemIngredientList = new ArrayList<>();
+//        ingredientList = new ArrayList<>();
     }
 
     @RequestMapping(value = "/viewnotes", method = RequestMethod.GET)
@@ -90,31 +94,39 @@ public class NoteController {
 //
 //            return new ModelAndView("recipes/add_to_note", "ingredient", new Ingredient());
 //        }
-         note1 = getNoteById(Integer.parseInt(note_id));
+        note1 = getNoteById(Integer.parseInt(note_id));
+//        itemIngredientList = new ArrayList<>();
         itemIngredientList = note1.getIngredientList();
 
         return new ModelAndView("recipes/add_to_note", "ingredient", new Ingredient());
     }
 
     @RequestMapping(value = "/save_ingredient")
-    public ModelAndView save(
-//            @RequestParam(value = "note_id") String note_id,
-            @ModelAttribute(value = "ingredient") Ingredient ingredient) {
-//        Note note1 = getNoteById(Integer.parseInt(note_id));
-//        List<Ingredient> note1list = note1.getIngredientList();
+    public ModelAndView save(@ModelAttribute(value = "ingredient") Ingredient ingredient) {
+
+        System.out.println("Set ingredient index1");
+        ingredient.setId(Ingredient.index++);
         System.out.println(ingredient);
-        if (ingredient.getId() < 1) {
-            ingredient.setId(Ingredient.index++);
-            ingredient.setId((long) (itemIngredientList.size() + 1));
-            System.out.println("Adding the new ingredient");
-            itemIngredientList.add(ingredient);
-            System.out.println(itemIngredientList);
-            note1.setIngredientList(itemIngredientList);
+        System.out.println("Set ingredient index2");
+        List<Ingredient> listlist = new ArrayList<>();
+        List<Ingredient> listlist1 = new ArrayList<>();
+
+        itemIngredientList = new ArrayList<>();
+        itemIngredientList.add(ingredient);
+        System.out.println("itemIngredientList" + itemIngredientList);
+        ingredientList = new ArrayList<>();
+        ingredientList.add(ingredient);
+        System.out.println("ingredientList" + ingredientList);
+
+        if ((note1.getIngredientList() == null)) {
+            listlist1 = itemIngredientList;
+            note1.setIngredientList(ingredientList);
+            System.out.println("vol 1");
         } else {
-            Ingredient ingTemp = getIngredientById(ingredient.getId());
-            ingTemp.setName(ingTemp.getName());
-            ingTemp.setQuantity(ingTemp.getQuantity());
-            ingTemp.setMeasure(ingTemp.getMeasure());
+            itemIngredientList.addAll(note1.getIngredientList());
+            listlist = itemIngredientList;
+            note1.setIngredientList(listlist);
+            System.out.println("vol 2");
         }
         return new ModelAndView("redirect:/viewnotes");
     }
