@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//import static recipes.controllers.IngredientController.ingredientList;
 
 @Controller
 public class NoteController {
@@ -86,7 +85,7 @@ public class NoteController {
 
 
     @RequestMapping(value = "/addingredient", method = RequestMethod.POST)
-    public ModelAndView addingggg(@RequestParam(value = "note_id") String note_id
+    public ModelAndView adding(@RequestParam(value = "note_id") String note_id
 //            , @RequestParam(value = "ingredient") Ingredient ingredient
     ) {
 //        public ModelAndView adding(Model model) {

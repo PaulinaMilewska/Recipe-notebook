@@ -1,39 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>ADD NEW RECIPES</title>
+    <title>ADD NEW RECIPE</title>
+    <style>
+        #container {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            /*background-color: #0088cc;*/
+            /*text-align: center;*/
+        }
+
+        #logo {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 13px;
+            width: 374px;
+        }
+
+        #work_space {
+            float: left;
+            background-color: lightgray;
+            padding: 20px;
+            text-align: center;
+            width: 360px;
+        }
+
+
+    </style>
 </head>
 <body>
+<div id="container">
+    <div id="logo">
+        <h3>ADD NOTE</h3>
+    </div>
 
-<form action="#" th:action="@{/save_note}" th:object="${note}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <input type="text" th:field="*{recipe.title}" placeholder="Title"><br>
-    <input type="text" th:field="*{recipe.descriptionOfPreparation}" placeholder="Description of preparation"><br>
-    <input type="text" th:field="*{recipe.preparingTimeInMinutes}" placeholder="Preparation time"><br>
-    <input type="text" th:field="*{recipe.cost}" placeholder="Cost"><br>
-    <input type="text" th:field="*{recipe.degree}" placeholder="Degree"><br>
-
-<!--        <input type="text" th:each="item : ${note.ingredientList}">-->
-<!--    <div th:each="item : ${note.ingredientList}">-->
-<!--        <p th:text="${item.name}"></p>-->
-<!--            <td>Id:<input type="text" th:value="|${item.quantity}|" placeholder="Ingredient name"/></td>-->
-<!--            "|Name: ${itemStatus.name} |"-->
-<!--            <td>Id:<input type="text" th:value="${}" placeholder="Ingredient name"/></td>-->
-<!--            <td>name: <input type="text" th:value="${item.quantity}" placeholder="Quantity"/></td>-->
-<!--            <td>name: <input type="text" th:value="${item.measure}" placeholder="Measure"/></td>-->
-<!--            <input type="text" th:field="*{}" placeholder="Degree"><br>-->
-<!--    <th:block th:text="*{item.ingredientList[__${itemStat}__].name}"></th:block>-->
-<!--            <input type="text" th:field="*{ingredientList[__${item}__]}" th:value="name" placeholder="Name"><br>-->
-<!--            <input type="text" th:field="${item.name}"  placeholder="Name"><br>-->
-
-<!--        </input>-->
-<!--    </div>-->
-
-<!--    <input type="text" th:field="*{ingredientList.add(new Ingredient(ingredient.name) )}" placeholder="Description of preparation"><br>-->
-    <input type="submit" th:value="Save">
-</form>
+    <div id="work_space">
+        <form action="#" th:action="@{/save_note}" th:object="${note}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <input type="text" th:field="*{recipe.title}" placeholder="Title"><br>
+            <input type="text" th:field="*{recipe.descriptionOfPreparation}"
+                   placeholder="Description of preparation"><br>
+            <input type="text" th:field="*{recipe.preparingTimeInMinutes}" placeholder="Preparation time"><br>
+            <input type="text" th:field="*{recipe.cost}" placeholder="Cost"><br>
+            <input type="text" th:field="*{recipe.degree}" placeholder="Degree"><br>
+<!--            <select>-->
+<!--                <option th:each="state : ${T(recipes.mainProject.DegreesOfDifficulty).}" th:value="${state}" th:text="${state}"></option>-->
+<!--            </select>-->
+<!--            <select  >-->
+<!--                <option value="${recipe.degree}">United Stated</option>-->
+<!--                <option value="CHINA">China</option>-->
+<!--                <option value="SG">Singapore</option>-->
+<!--                <option value="MY">Malaysia</option>-->
+<!--            </select>-->
+<!--            <form:select th:each="state: ${T(recipes.mainProject.DegreesOfDifficulty).}"-->
+<!--                         th:value="state" th:text="${state}"></form:select>-->
 
 
+
+            <input type="submit" th:value="Save">
+        </form>
+    </div>
+</div>
 </body>
 </html>

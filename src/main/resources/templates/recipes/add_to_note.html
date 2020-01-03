@@ -3,19 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Ingredient Form</title>
+    <title>ADD NEW INGREDIENT</title>
+
+    <style>
+        #container {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            /*background-color: #0088cc;*/
+            /*text-align: center;*/
+        }
+
+        #logo {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 13px;
+            width: 374px;
+        }
+
+        #work_space {
+            float: left;
+            background-color: lightgray;
+            padding: 20px;
+            text-align: center;
+            width: 360px;
+        }
+
+    </style>
 </head>
 <body>
-<div>
-    <h2>Recipe Form</h2>
+<div id="container">
+    <div id="logo">
+        <h3>ADD INGREDIENT</h3>
+    </div>
+    <div id="work_space">
+        <!--    <form action="#" th:action="@{/save_ingredient}" th:object="${ingredient}" method="post">-->
+        <form action="#" th:action="@{/save_ingredient}" th:object="${ingredient}" method="post">
+            <!--        <input type="hidden" th:name="note_id" th:field="*{id}">-->
+            <input type="text" th:field="*{name}" placeholder="Name of ingredient"><br>
+            <input type="text" th:field="*{quantity}" placeholder="Quantity"><br>
 
-<!--    <form action="#" th:action="@{/save_ingredient}" th:object="${ingredient}" method="post">-->
-    <form action="#" th:action="@{/save_ingredient}"  th:object="${ingredient}" method="post">
-<!--        <input type="hidden" th:name="note_id" th:field="*{id}">-->
-        <input type="text" th:field="*{name}" placeholder="Name of ingredient"><br>
-        <input type="text" th:field="*{quantity}" placeholder="Quantity"><br>
-        <input type="text" th:field="*{measure}" placeholder="Measure"><br>
-        <input type="submit" th:value="Save">
-    </form>
+
+            <input type="text" th:field="*{measure}" placeholder="Measure"><br>
+<!--            <select>-->
+<!--                <option th:each="value: *{measure}"-->
+<!--                th:value="${value}"-->
+<!--                th:text="${value}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--            <input  type="text" th:field="*{measure}" placeholder="Measure"><br>-->
+
+
+            <input type="submit" th:value="Save">
+        </form>
+    </div>
 </div>
 </body>
 </html>
