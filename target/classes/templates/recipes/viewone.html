@@ -6,50 +6,84 @@
 
     <style>
         #container {
-            width: 1000px;
+            width: 700px;
+            height: 500px;
             margin-left: auto;
             margin-right: auto;
-        }  </style>
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        #logo {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            width: 670px;
+        }
+
+        #work_space {
+            background-color: lightgray;
+            text-align: center;
+            padding: 15px;
+            width: 670px;
+            height: 400px;
+        }
+    </style>
 
     <title>Your recipe</title>
 </head>
 <body>
 <div id="container">
-show your recipe
+    <div id="logo">
+        <h3>RECIPE DETAILS</h3>
+    </div>
+    <div id="work_space">
+        <br><br>
+        <table>
 
-<table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th> TITLE</th>
+                <th> DESCRIPTION</th>
+                <th>TIME</th>
+                <th>COST</th>
+                <th>DIFFICULTY</th>
+                <div style="clear: both"></div>
+            </tr>
+            </thead>
+            <tbody>
+            <!--*******************************************************-->
 
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th> TITLE</th>
-        <th> INGREDIENTS</th>
-        <th> DESCRIPTION</th>
-        <th>TIME</th>
-        <th>COST</th>
-        <th>DIFFICULTY</th>
-        <div style="clear: both"></div>
-    </tr>
-    </thead>
-    <tbody>
-    <!--*******************************************************-->
+            <tr>
+                <td th:text="${noteToView.getRecipe().getId()}"></td>
+                <td th:text="${noteToView.getRecipe().getTitle()}"></td>
+                <td th:text="${noteToView.getRecipe().descriptionOfPreparation}"></td>
+                <td th:text="${noteToView.getRecipe().preparingTimeInMinutes}"></td>
+                <td th:text="${noteToView.getRecipe().cost}"></td>
+                <td th:text="${noteToView.getRecipe().degree}"></td>
 
-    <tr>
-
-        <td th:text="${recipe1.id}"></td>
-        <td th:text="${recipe1.title}"></td>
-        <td th:text="${recipe1.ingredientsList}"></td>
-        <td th:text="${recipe1.descriptionOfPreparation}"></td>
-        <td th:text="${recipe1.preparingTimeInMinutes}"></td>
-        <td th:text="${recipe1.cost}"></td>
-        <td th:text="${recipe1.degree}"></td>
+                <!--        <td th:text="${recipe1.id}"></td>-->
+                <!--        <td th:text="${recipe1.title}"></td>-->
+                <!--        <td th:text="${recipe1.descriptionOfPreparation}"></td>-->
+                <!--        <td th:text="${recipe1.preparingTimeInMinutes}"></td>-->
+                <!--        <td th:text="${recipe1.cost}"></td>-->
+                <!--        <td th:text="${recipe1.degree}"></td>-->
 
 
+            </tr>
 
-    </tr>
-
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </body>

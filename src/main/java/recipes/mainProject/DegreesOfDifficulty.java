@@ -21,4 +21,11 @@ public enum DegreesOfDifficulty {
     public void setDifficultyDescription(String difficultyDescription) {
         this.difficultyDescription = difficultyDescription;
     }
+
+    @Override
+    public String toString() {
+        return "DegreesOfDifficulty{" +
+                "difficultyDescription='" + difficultyDescription + '\'' +
+                '}';
+    }
 }

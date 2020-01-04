@@ -86,12 +86,14 @@ public class RecipeController {
     }
 
     Recipe recipe1 = new Recipe();
-
-    @RequestMapping(value = "/viewone", method = RequestMethod.POST)
-    public ModelAndView show(@RequestParam(value = "recipe_id") String recipe_id) {
-        recipe1 = recipesList.get(Math.toIntExact(getRecipesById(Long.valueOf(Integer.parseInt(recipe_id))).getId() - 1));
-        return new ModelAndView("recipes/viewone", "recipe1", recipe1);
-    }
+//
+//    @RequestMapping(value = "/viewone", method = RequestMethod.POST)
+//    public ModelAndView show(@RequestParam(value = "recipe_id") String recipe_id) {
+//        System.out.println("Here1");
+//        recipe1 =  recipesList.get(Math.toIntExact(getRecipesById(Long.valueOf(Integer.parseInt(recipe_id))).getId() - 1));
+//        System.out.println("Here2");
+//        return new ModelAndView("recipes/viewone", "recipe1", recipe1);
+//    }
 
 
     @RequestMapping(value = "/delete_recipe", method = RequestMethod.POST)

@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import recipes.mainProject.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -66,6 +65,7 @@ public class NoteController {
 
 //        if (recipe.getId() < 1) {
         note.setId(Recipe.index++);
+        note.getRecipe().setId(Recipe.index++);
         System.out.printf("Adding the new note");
         note.setId(Long.valueOf(noteList.size() + 1));
         Long noteId = note.getId();
@@ -128,6 +128,19 @@ public class NoteController {
             System.out.println("vol 2");
         }
         return new ModelAndView("redirect:/viewnotes");
+    }
+
+    Note noteToView = new Note();
+    @RequestMapping(value = "/viewone", method = RequestMethod.POST)
+    public ModelAndView show(@RequestParam(value = "note_id") String note_id) {
+        noteToView = noteList.get(Math.toIntExact((getNoteById(Integer.parseInt(note_id))).getId()-1));
+        System.out.println(noteToView.getRecipe().getId());
+//        noteToView.getRecipe().getTitle();
+//        noteToView.getRecipe().getDescriptionOfPreparation();
+//        noteToView.getRecipe().getPreparingTimeInMinutes();
+//        noteToView.getRecipe().getCost();
+//        noteToView.getRecipe().getDegree();
+        return new ModelAndView("recipes/viewone", "noteToView", noteToView);
     }
 
     private Note getNoteById(@RequestParam int id) {

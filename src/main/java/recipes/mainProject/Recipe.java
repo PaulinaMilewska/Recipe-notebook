@@ -79,6 +79,17 @@ public class Recipe {
 //    }
 
 
+    public Recipe(Long id, String title, String descriptionOfPreparation, int preparingTimeInMinutes, double cost, String degree) {
+        this.id = id;
+        this.title = title;
+        this.descriptionOfPreparation = descriptionOfPreparation;
+        this.preparingTimeInMinutes = preparingTimeInMinutes;
+        this.cost = cost;
+        this.degree = degree;
+    }
+
+
+
     public String getDescriptionOfPreparation() {
         return descriptionOfPreparation;
     }
