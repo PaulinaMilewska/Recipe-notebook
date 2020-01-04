@@ -22,7 +22,7 @@
         }
 
         #work_space {
-            float: left;
+            clear: both;
             background-color: lightgray;
             width: 1420px;
             min-height: 620px;
@@ -30,11 +30,21 @@
         }
 
         #nav {
+            float: left;
             padding: 20px;
             width: 200px;
             background-color: darkgrey;
             text-align: center;
-            color: #222222;
+            /*color: #222222;*/
+            font-family: Rockwell;
+        }
+
+        #nav1 {
+            float: left;
+            padding: 20px;
+            width: 200px;
+            background-color: silver;
+            text-align: center;
             font-family: Rockwell;
         }
 
@@ -55,12 +65,6 @@
             padding: 15px;
         }
 
-        .block {
-            background-color: azure;
-            width: 20%;
-            float: left;
-        }
-
         a.tilelink {
             color: black;
             text-decoration: none;
@@ -75,10 +79,6 @@
     <div id="logo">
         <h1>Your recipes notebook &#x2661 &hearts &#x2661 &hearts</h1>
 
-        <!--    </div>-->
-        <!--    <div id="logogif">-->
-        <!--        <img src="giphy.gif" alt="Cooking cat" style="width:60px;height:60px;">-->
-        <!--    </div>-->
     </div>
 
     <div id="work_space">
@@ -87,7 +87,12 @@
             <a href="addnote.html" class="tilelink"> ADD NEW NOTE </a>
 
         </div>
-        <br><br>
+
+        <div id="nav1">
+            <a href="bmi.html" class="tilelink">CALCULATOR BMI</a>
+
+        </div>
+        <br><br><br><br><br>
         <table>
 
             <thead>
@@ -122,15 +127,15 @@
                     </th:block>
                     <br>
                     <th:block>
-                        <form method="post" th:action="@{/delete_recipe}">
-                            <input type="hidden" th:name="recipe_id" th:value="${item.id}">
+                        <form method="post" th:action="@{/delete_note}">
+                            <input type="hidden" th:name="note_id" th:value="${item.id}">
                             <input type="submit" value="DELETE RECIPE">
                         </form>
                     </th:block>
                     <br>
                     <th:block>
-                        <form method="post" th:action="@{/edit_recipe}">
-                            <input type="hidden" th:name="recipe_id" th:value="${item.id}">
+                        <form method="post" th:action="@{/edit_note}">
+                            <input type="hidden" th:name="note_id" th:value="${item.id}">
                             <input type="submit" value="EDIT RECIPE">
                         </form>
                     </th:block>
@@ -145,12 +150,7 @@
                     <p th:text="|Name: ${itemStatus.name} |"></p>
                     <p th:text="|Qty: ${itemStatus.quantity} |"></p>
                     <p th:text="|Measure: ${itemStatus.measure} |"></p><br>
-                    <!--            </td>-->
-
-                    <!--            <td th:each="itemStatus : ${item.ingredientList}" th:text="|${itemStatus.quantity} |"></td>-->
-                    <!--            <td th:each="itemStatus : ${item.ingredientList}" th:text="|${itemStatus.measure}|"></td>-->
-
-                    <!--            </td>-->
+                    <!--                    <p th:text="|Measure: ${itemStatus.measureList} |"></p><br>-->
 
                 </td>
                 <td>
@@ -158,51 +158,17 @@
                         <input type="hidden" th:name="note_id" th:value="${item.id}">
                         <input type="submit" value="ADD INGREDIENT">
                     </form>
-
                 </td>
-
             </tr>
-
-
-            <!--        <th>INGREDIENTS</th>-->
-            <!--        <tr data-th-each="item : ${noteList}">-->
-            <!--            <td data-th-each="itemStatus : ${item.ingredientList}">-->
-            <!--                <p th:text="|Name of ${itemStatus.id}-th ingredient: ${itemStatus.name} |"></p>-->
-            <!--                <p th:text="|Qty: ${itemStatus.quantity} |"></p>-->
-            <!--                <p th:text="|Measure: ${itemStatus.measure} |"></p><br>-->
-
-            <!--            </td>-->
-            <!--        </tr>-->
-
-            <!--            <td>-->
-            <!--                <form method="post" th:action="@{/viewone}">-->
-            <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
-            <!--                    <input type="submit" value="SHOW">-->
-            <!--                </form>-->
-            <!--            </td>-->
-
-            <!--            <td>-->
-            <!--                <form method="post" th:action="@{/delete_recipe}">-->
-            <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
-            <!--                    <input type="submit" value="DELETE">-->
-            <!--                </form>-->
-            <!--            </td>-->
-            <!--            <td>-->
-            <!--                <form method="post" th:action="@{/edit_recipe}">-->
-            <!--                    <input type="hidden" th:name="recipe_id" th:value="${item.id}">-->
-            <!--                    <input type="submit" value="EDIT">-->
-            <!--                </form>-->
-            <!--            </td>-->
             </th>
-
-            <!--*******************************************************-->
-
-
             </tbody>
         </table>
+        <br><br>
 
+        <!--!!!!!!!!!!!!!!!!!!!! NIE DZIAŁA: -->
 
-        <img src="giphy.gif" width="300"/>
+        <img src="giphy.gif" alt="Cat Cooking GIF"
+             style="width: 280px; height: 214.213px; left: 0px; top: 0px; opacity: 0;">
 
 
     </div>

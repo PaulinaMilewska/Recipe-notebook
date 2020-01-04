@@ -1,28 +1,35 @@
 package recipes.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import recipes.mainProject.Calculator;
-import recipes.mainProject.CalculatorFromData;
+
+import static java.lang.Math.round;
 
 @Controller
 public class CalculatorController {
-    @Autowired
-    Calculator calculator;
+
+    public CalculatorController() {
+    }
 
     @RequestMapping(value = "/bmi")
-    public String createOperationModel(Model model) {
-        model.addAttribute("operationModel", new CalculatorFromData());
-        return "bmi";
+    public ModelAndView createOperationModel(Model model) {
+        model.addAttribute("operationModel", new Calculator());
+        return new ModelAndView("recipes/bmi", "operationModel", new Calculator());
     }
 
-    @RequestMapping(path="/bmi", method = RequestMethod.POST)
-    public String add(@ModelAttribute("operationModel") CalculatorFromData calculatorFromData, Model model) {
-        model.addAttribute("result", calculator.calculate(calculatorFromData.getWeight(), calculatorFromData.getHeight() ));
-        return "bmi";
+    @RequestMapping(value = "/bmicount")
+    public ModelAndView add(@ModelAttribute("operationModel") Calculator calculator) {
+        calculator.setId(Calculator.index++);
+        double heightModel = calculator.getHeight()/100;
+        double result1 = calculator.getWeight() / (heightModel*heightModel);
+        double result2 = result1 * 100;
+        int result3 = (int) result2;
+        double result = (double) result3/100;
+        return new ModelAndView("recipes/bmiresult", "result", result);
     }
+
 }

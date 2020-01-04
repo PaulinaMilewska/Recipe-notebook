@@ -45,10 +45,10 @@
                    placeholder="Description of preparation"><br>
             <input type="text" th:field="*{recipe.preparingTimeInMinutes}" placeholder="Preparation time"><br>
             <input type="text" th:field="*{recipe.cost}" placeholder="Cost"><br>
-            <input type="text" th:field="*{recipe.degree}" placeholder="Degree"><br>
-            <select>
-                <option th:each="state : ${T(recipes.mainProject.DegreesOfDifficulty).toString()}" th:value="${state}" th:text="${state}"></option>
-            </select>
+            <input type="text" th:field="*{recipe.degree}" placeholder="Degree***"><br>
+<!--            <select>-->
+<!--                <option th:each="state : ${T(recipes.mainProject.DegreesOfDifficulty).toString()}" th:value="${state}" th:text="${state}"></option>-->
+<!--            </select>-->
 <!--            <select  >-->
 <!--                <option value="${recipe.degree}">United Stated</option>-->
 <!--                <option value="CHINA">China</option>-->
@@ -57,11 +57,11 @@
 <!--            </select>-->
 <!--            <form:select th:each="state: ${T(recipes.mainProject.DegreesOfDifficulty).}"-->
 <!--                         th:value="state" th:text="${state}"></form:select>-->
-
-
-
             <input type="submit" th:value="Save">
         </form>
+        <br><br>
+        <p><b>***Degree to choose:</b> </p>
+        <i>VERY EASY/ EASY/ MEDIUM/ HARD/ EXTRA HARD</i>
     </div>
 </div>
 </body>
