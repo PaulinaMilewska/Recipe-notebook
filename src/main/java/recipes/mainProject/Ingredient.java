@@ -31,37 +31,9 @@ public class Ingredient {
         this.measure = measure;
     }
 
-//    public Ingredient(String name, double quantity, Measure measure, List<String> measureList) {
-//        this.id = index++;
-//        measureList = new ArrayList<>();
-//        measureList.add("LITER");
-//        measureList.add("SALTSPOON");
-//        measureList.add("GRAM");
-//        this.name = name;
-//        this.quantity = quantity;
-//        this.measure = measure;
-//        this.measureList = measureList;
-//    }
-
-//    public List<String> getMeasureList() {
-//        return measureList;
-//    }
-//
-//    public void setMeasureList(List<String> measureList) {
-//        this.measureList = measureList;
-//    }
-
     public Long getId() {
         return id;
     }
-
-//    public Recipe getRecipe() {
-//        return recipe;
-//    }
-//
-//    public void setRecipe(Recipe recipe) {
-//        this.recipe = recipe;
-//    }
 
     public void setId(Long id) {
         this.id = id;
@@ -106,18 +78,6 @@ public class Ingredient {
     public int hashCode() {
         return Objects.hash(id, name, quantity, measure);
     }
-
-//    @Override
-//    public String toString() {
-//        return "Ingredient{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", quantity=" + quantity +
-//                ", measure=" + measure +
-//                '}';
-//    }
-
-
     @Override
     public String toString() {
         return "Ingredient{" +
@@ -125,7 +85,6 @@ public class Ingredient {
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
                 ", measure=" + measure +
-//                ", measureList=" + measureList +
                 '}';
     }
 }

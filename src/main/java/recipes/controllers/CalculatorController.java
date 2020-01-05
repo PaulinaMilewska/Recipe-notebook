@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import recipes.mainProject.Calculator;
 
-import static java.lang.Math.round;
-
 @Controller
 public class CalculatorController {
 
