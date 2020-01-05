@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD NEW RECIPE</title>
+    <style>
+        #container {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #logo {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 13px;
+            width: 374px;
+        }
+
+        .subtitle {
+            float: left;
+            padding: 10px;
+            width: 345px;
+            background-color: silver;
+            text-align: center;
+            font-family: Rockwell;
+        }
+
+        #work_space {
+            float: left;
+            background-color: lightgray;
+            padding: 20px;
+            text-align: center;
+            width: 360px;
+            white-space: pre-line;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="logo">
+        <h3>EDIT RECIPE</h3>
+    </div>
+
+    <div id="work_space">
+        <form action="#" th:action="@{/save_edit_note}" th:object="${note}" method="post">
+            <div class="subtitle"><b>Edit note</b></div>
+            <br>
+            <input type="hidden" th:field="*{id}">
+            <i>Title:                     </i>
+            <input type="text" th:field="*{recipe.title}"><br>
+            <i>Description of preparation:</i>
+            <input type="text" th:field="*{recipe.descriptionOfPreparation}"><br>
+            <i>Preparation time:          </i>
+            <input type="text" th:field="*{recipe.preparingTimeInMinutes}"><br>
+            <i>Cost:                      </i>
+            <input type="text" th:field="*{recipe.cost}"><br>
+            <i>*Degree:                   </i>
+            <input type="text" th:field="*{recipe.degree}"><br>
+
+            <br>
+            <div class="subtitle"><b>Edit ingredient</b></div>
+            <br>
+            <th:block data-th-each="ingred, stat : ${note.ingredientList}">
+                <input type="hidden" th:field="*{ingredientList[__${stat.index}__].id}" th:value="${ingred.id}"><br>
+                <i>Name:</i>
+                <input type="text" th:field="*{ingredientList[__${stat.index}__].name}" th:value="${ingred.name}"><br>
+                <i>Quantity:</i>
+                <input type="text" th:field="*{ingredientList[__${stat.index}__].quantity}"
+                       th:value="${ingred.quantity}"><br>
+                <i>**Measure:</i>
+                <input type="text" th:field="*{ingredientList[__${stat.index}__].measure}" th:value="${ingred.measure}"><br>
+            </th:block>
+
+            <input type="submit" th:value="Save">
+        </form>
+        <br><br>
+        <p><b>*Degree to choose:</b></p>
+        <i>VERY EASY/ EASY/ MEDIUM/ HARD/ EXTRA HARD</i><br>
+        <p><b>**Measure to choose:</b></p>
+        <i>GRAM/ LITER/ DROP/ DASH/ PINCH/ SALTSPOON/ COFFEESPOON/ TABLESPOON/ CUP/ PINT/ POTTLE/ PIECE</i>
+    </div>
+</div>
+</body>
+</html>

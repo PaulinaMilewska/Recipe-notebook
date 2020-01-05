@@ -14,7 +14,7 @@ public class Ingredient {
     private double quantity;
 //    @Enumerated(EnumType.STRING)
     private Measure measure;
-    private List<String> measureList;
+//    private List<String> measureList;
 //    @ManyToOne
 //    @JoinColumn (name = "recipe_id")
 //    private Recipe recipe;
@@ -31,25 +31,25 @@ public class Ingredient {
         this.measure = measure;
     }
 
-    public Ingredient(String name, double quantity, Measure measure, List<String> measureList) {
-        this.id = index++;
-        measureList = new ArrayList<>();
-        measureList.add("LITER");
-        measureList.add("SALTSPOON");
-        measureList.add("GRAM");
-        this.name = name;
-        this.quantity = quantity;
-        this.measure = measure;
-        this.measureList = measureList;
-    }
+//    public Ingredient(String name, double quantity, Measure measure, List<String> measureList) {
+//        this.id = index++;
+//        measureList = new ArrayList<>();
+//        measureList.add("LITER");
+//        measureList.add("SALTSPOON");
+//        measureList.add("GRAM");
+//        this.name = name;
+//        this.quantity = quantity;
+//        this.measure = measure;
+//        this.measureList = measureList;
+//    }
 
-    public List<String> getMeasureList() {
-        return measureList;
-    }
-
-    public void setMeasureList(List<String> measureList) {
-        this.measureList = measureList;
-    }
+//    public List<String> getMeasureList() {
+//        return measureList;
+//    }
+//
+//    public void setMeasureList(List<String> measureList) {
+//        this.measureList = measureList;
+//    }
 
     public Long getId() {
         return id;
@@ -125,7 +125,7 @@ public class Ingredient {
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
                 ", measure=" + measure +
-                ", measureList=" + measureList +
+//                ", measureList=" + measureList +
                 '}';
     }
 }

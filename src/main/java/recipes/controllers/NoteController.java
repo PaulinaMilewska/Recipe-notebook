@@ -23,9 +23,6 @@ public class NoteController {
     public Recipe recipe1;
     public Recipe recipe2;
     public Note note1;
-    //    public static String note_id;
-    public Ingredient ingredient;
-
 
     public NoteController() {
         recipe1 = new Recipe("Mushroom soup", "Add mushrooms to hot broth",
@@ -58,6 +55,75 @@ public class NoteController {
         return new ModelAndView("recipes/viewnotes", "noteList", noteList);
     }
 
+    @RequestMapping(value = "/edit_note")
+    public ModelAndView editing(@RequestParam(value = "note_id") String note_id) {
+        Note note = getNoteById(Integer.parseInt(note_id));
+//        return new ModelAndView("recipes/addnote", "note", note);
+        return new ModelAndView("recipes/addeditnote", "note", note);
+    }
+
+    @RequestMapping(value = "/save_edit_note")
+    public ModelAndView save_edit_note(@ModelAttribute(value = "note") Note note) {
+        System.out.println("Note show   "+note);
+//        if (note.getId() > 1) {
+//        note.setId(Recipe.index++);
+//        note.getRecipe().setId(Recipe.index++);
+//        System.out.printf("Adding the new note");
+//        note.setId(Long.valueOf(noteList.size() + 1));
+//        Long noteId = note.getId();
+//        noteList.add(note);
+//        } else {
+        Note noteTemp = getNoteById(Math.toIntExact(note.getId()));
+        System.out.println("A");
+        noteTemp.setId(note.getId());
+        System.out.println("B");
+        noteTemp.setRecipe(note.getRecipe());
+        System.out.println("C");
+        noteTemp.getRecipe().setId(note.getRecipe().getId());
+//        noteTemp.getRecipe().setId(Recipe.index++);
+        System.out.println("D");
+//        List<Ingredient> listA = new ArrayList<>();
+//        listA = note.getIngredientList();
+//        List<Ingredient> listB = new ArrayList<>();
+//        listB = noteTemp.getIngredientList();
+
+//        for (Ingredient ingred1: listA){
+//
+//        }
+//
+//        for (Ingredient ingred : listB) {
+//
+//                ingred.setId( note.getIngredientList().get(i).getId() );
+//                ingred.setName( note.getIngredientList().get(i).getName() );
+//                ingred.setQuantity( note.getIngredientList().get(i).getQuantity() );
+//                ingred.setMeasure( note.getIngredientList().get(i).getMeasure() );
+//        }
+        noteTemp.setIngredientList(note.getIngredientList());
+//        noteTemp.setIngredientList(note.getIngredientList());
+
+//        System.out.println("SHOW NOTE   "+note);
+        System.out.println("SHOW LIST   "+note.getIngredientList());
+        System.out.println("SHOW LIST   "+noteTemp.getIngredientList());
+//            recipeTemp.setIngredientsList(recipe.getIngredientsList());
+//        noteTemp.setDescriptionOfPreparation(recipe.getDescriptionOfPreparation());
+//        noteTemp.setPreparingTimeInMinutes(recipe.getPreparingTimeInMinutes());
+//        noteTemp.setCost(recipe.getCost());
+//        recipeTnoteTempemp.setDegree(recipe.getDegree());
+//        Note noteTemp = getNoteById(Math.toIntExact(note.getId()));
+//        noteTemp.setRecipe();
+//            Recipe recipeTemp = getRecipesById(recipe.getId());
+//            recipeTemp.setTitle(recipe.getTitle());
+//            recipeTemp.setIngredientsList(recipe.getIngredientsList());
+//            recipeTemp.setDescriptionOfPreparation(recipe.getDescriptionOfPreparation());
+//            recipeTemp.setPreparingTimeInMinutes(recipe.getPreparingTimeInMinutes());
+//            recipeTemp.setCost(recipe.getCost());
+//            recipeTemp.setDegree(recipe.getDegree());
+//            Note noteTemp = getNoteById(Math.toIntExact(note.getId()));
+//            noteTemp.setRecipe();
+//        }
+//        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
+        return new ModelAndView("redirect:/viewnotes");
+    }
 
     @RequestMapping(value = "/addnote")
     public ModelAndView showForm(Model model) {
@@ -83,8 +149,6 @@ public class NoteController {
 //            recipeTemp.setPreparingTimeInMinutes(recipe.getPreparingTimeInMinutes());
 //            recipeTemp.setCost(recipe.getCost());
 //            recipeTemp.setDegree(recipe.getDegree());
-//            Note noteTemp = getNoteById(Math.toIntExact(note.getId()));
-//            noteTemp.setRecipe();
 //        }
 //        EmailExecutor.sendMail("pkozlowska.pw@gmail.com");
         return new ModelAndView("redirect:/viewnotes");
@@ -149,12 +213,6 @@ public class NoteController {
     public ModelAndView delete(@RequestParam(value = "note_id") String note_id) {
         noteList.remove(getNoteById(Math.toIntExact(Long.valueOf(Integer.parseInt(note_id)))));
         return new ModelAndView("redirect:/viewnotes");
-    }
-
-    @RequestMapping(value = "/edit_note")
-    public ModelAndView editing(@RequestParam(value = "note_id") String note_id) {
-        Note note = getNoteById(Integer.parseInt(note_id));
-        return new ModelAndView("recipes/addnote", "note", note);
     }
 
     private Note getNoteById(@RequestParam int id) {
