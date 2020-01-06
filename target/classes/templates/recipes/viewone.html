@@ -11,6 +11,11 @@
             margin-left: auto;
             margin-right: auto;
         }
+        #zegar {
+            width: 600px;
+            font-size: 40px;
+            font-family: 'Jokerman';
+        }
 
         table, th, td {
             border: 1px solid black;
@@ -43,8 +48,9 @@
     </style>
 
     <title>Your recipe</title>
+    <script src="timer.js"></script>
 </head>
-<body>
+<body onload="odliczanie()">
 <div id="container">
     <div id="logo">
         <h3>RECIPE DETAILS</h3>
@@ -81,6 +87,7 @@
 
             </tbody>
         </table>
+        <div id="zegar">///</div>
     </div>
 </div>
 

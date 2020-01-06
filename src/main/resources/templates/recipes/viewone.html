@@ -36,15 +36,28 @@
             width: 670px;
             height: 400px;
         }
+
         a.tilelink {
             color: black;
             text-decoration: none;
         }
+
+        /* ----- div zegar: -----*/
+        #zegar {
+            width: 600px;
+            font-size: 40px;
+            font-family: 'Jokerman';
+        }
     </style>
 
     <title>Your recipe</title>
+
+    /* ----- ścieżka do js: -----*/
+    <script src="timer.js"></script>
 </head>
-<body>
+
+    /* ----- onload funkcji odliczanie() z js: -----*/
+<body onload="odliczanie()">
 <div id="container">
     <div id="logo">
         <h3>RECIPE DETAILS</h3>
@@ -52,7 +65,7 @@
 
     <div id="work_space">
         <br>
-        <i ><a href="viewnotes.html" class="tilelink">BACK HOME</a></i>
+        <i><a href="viewnotes.html" class="tilelink">BACK HOME</a></i>
         <br><br>
         <table>
 
@@ -81,6 +94,10 @@
 
             </tbody>
         </table>
+
+<!-- div pod tabelką -->
+
+        <div id="zegar">///</div>
     </div>
 </div>
 

@@ -6,7 +6,6 @@
     <meta name="description" content="Create your own recipe notebook!">
     <meta name="keywords" content="recipe, notebook, cooking, food, preparing dishes"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <style>
         #container {
             width: 1450px;
@@ -39,6 +38,10 @@
             font-family: Rockwell;
         }
 
+        #nav:hover {
+            background-color: dimgrey;
+        }
+
         #nav1 {
             float: left;
             padding: 20px;
@@ -47,6 +50,16 @@
             text-align: center;
             font-family: Rockwell;
         }
+
+        #nav1:hover {
+            background-color: dimgrey;
+        }
+
+        /*#zegar {*/
+        /*    width: 600px;*/
+        /*    font-size: 40px;*/
+        /*    font-family: 'Jokerman';*/
+        /*}*/
 
         #footer {
             clear: both;
@@ -70,9 +83,12 @@
             text-decoration: none;
         }
 
-
     </style>
+
+<!--    <script src="timer.js"></script>-->
+
 </head>
+<!--<body onload="odliczanie();">-->
 <body>
 
 <div id="container">
@@ -83,15 +99,17 @@
 
     <div id="work_space">
 
-        <div id="nav">
-            <a href="addnote.html" class="tilelink"> ADD NEW NOTE </a>
 
-        </div>
+        <a href="addnote.html" class="tilelink">
+            <div id="nav">ADD NEW NOTE</div>
+        </a>
 
-        <div id="nav1">
-            <a href="bmi.html" class="tilelink">CALCULATOR BMI</a>
 
-        </div>
+        <a href="bmi.html" class="tilelink">
+            <div id="nav1">CALCULATOR BMI</div>
+        </a>
+
+
         <br><br><br><br><br>
         <table>
 
@@ -167,8 +185,13 @@
 
         <!--!!!!!!!!!!!!!!!!!!!! NIE DZIAŁA: -->
 
-        <img src="giphy.gif" alt="Cat Cooking GIF"
-             style="width: 280px; height: 214.213px; left: 0px; top: 0px; opacity: 0;">
+        <!--        <img src="giphy.gif" alt="Cat Cooking GIF"-->
+        <!--             style="width: 280px; height: 214.213px; left: 0px; top: 0px; opacity: 0;">-->
+<!--        <div id="zegar">///</div>-->
+
+        <!--        <script type="text/javascript" src="timer.js">-->
+        <!--            dokument.getElementById("zegar").innerHTML= dzien;-->
+        <!--        </script>-->
 
 
     </div>
