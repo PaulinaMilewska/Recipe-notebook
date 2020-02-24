@@ -48,6 +48,11 @@ public class NoteController {
         measureList = Arrays.asList(Measure.PIECE, Measure.LITER, Measure.SALTSPOON, Measure.TABLESPOON, Measure.COFFEESPOON, Measure.CUP, Measure.DASH, Measure.DROP, Measure.GRAM, Measure.PINCH, Measure.PINT, Measure.POTTLE);
     }
 
+    @RequestMapping("/")
+    public String get() {
+        return "recipes/index";
+    }
+
     @RequestMapping(value = "/viewnotes", method = RequestMethod.GET)
     public ModelAndView viewnotes(@ModelAttribute(value = "ingredient") Ingredient ingredient) {
         List<Ingredient> newList = new ArrayList<>();
