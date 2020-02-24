@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import recipes.mainProject.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,6 +21,8 @@ public class NoteController {
     public List<Note> noteList;
     public List<Ingredient> list1;
     public List<Ingredient> list2;
+    public List<String> difficultyList;
+    public List<Measure> measureList;
     public Recipe recipe1;
     public Recipe recipe2;
     public Note note1;
@@ -38,6 +41,11 @@ public class NoteController {
         noteList.add(new Note(recipe1, list1));
         noteList.add(new Note(recipe2, list2));
         itemIngredientList = new ArrayList<>();
+        difficultyList = new ArrayList<>();
+//        difficultyList = Arrays.asList("VERY EASY", "EASY", "MEDIUM", "HARD", "EXTRA HARD");
+        difficultyList = Arrays.asList(DegreesOfDifficulty.A.getDifficultyDescription(), DegreesOfDifficulty.B.getDifficultyDescription(), DegreesOfDifficulty.C.getDifficultyDescription(), DegreesOfDifficulty.D.getDifficultyDescription(), DegreesOfDifficulty.E.getDifficultyDescription());
+        measureList = new ArrayList<>();
+        measureList = Arrays.asList(Measure.PIECE, Measure.LITER, Measure.SALTSPOON, Measure.TABLESPOON, Measure.COFFEESPOON, Measure.CUP, Measure.DASH, Measure.DROP, Measure.GRAM, Measure.PINCH, Measure.PINT, Measure.POTTLE);
     }
 
     @RequestMapping(value = "/viewnotes", method = RequestMethod.GET)
@@ -57,25 +65,28 @@ public class NoteController {
 
     @RequestMapping(value = "/save_edit_note")
     public ModelAndView save_edit_note(@ModelAttribute(value = "note") Note note) {
-        System.out.println("Note show   "+note);
+        System.out.println("Note show   " + note);
         Note noteTemp = getNoteById(Math.toIntExact(note.getId()));
         noteTemp.setId(note.getId());
         noteTemp.setRecipe(note.getRecipe());
         noteTemp.getRecipe().setId(note.getRecipe().getId());
         noteTemp.setIngredientList(note.getIngredientList());
-        System.out.println("SHOW LIST   "+note.getIngredientList());
-        System.out.println("SHOW LIST   "+noteTemp.getIngredientList());
+        System.out.println("SHOW LIST   " + note.getIngredientList());
+        System.out.println("SHOW LIST   " + noteTemp.getIngredientList());
         return new ModelAndView("redirect:/viewnotes");
     }
 
     @RequestMapping(value = "/addnote")
     public ModelAndView showForm(Model model) {
         model.addAttribute("noteList", noteList);
+        model.addAttribute("difficultyList", difficultyList);
         return new ModelAndView("recipes/addnote", "note", new Note());
     }
 
     @RequestMapping(value = "/save_note")
-    public ModelAndView save(@ModelAttribute(value = "note") Note note) {
+    public ModelAndView save(@ModelAttribute(value = "note") Note note,
+                             @ModelAttribute(value = "difficulty") String difficulty) {
+        note.getRecipe().setDegree(difficulty);
         note.setId(Recipe.index++);
         note.getRecipe().setId(Recipe.index++);
         System.out.printf("Adding the new note");
@@ -87,15 +98,17 @@ public class NoteController {
 
 
     @RequestMapping(value = "/addingredient", method = RequestMethod.POST)
-    public ModelAndView adding(@RequestParam(value = "note_id") String note_id
+    public ModelAndView adding(Model model, @RequestParam(value = "note_id") String note_id
     ) {
+        model.addAttribute("measureList", measureList);
         note1 = getNoteById(Integer.parseInt(note_id));
         itemIngredientList = note1.getIngredientList();
         return new ModelAndView("recipes/add_to_note", "ingredient", new Ingredient());
     }
 
     @RequestMapping(value = "/save_ingredient")
-    public ModelAndView save(@ModelAttribute(value = "ingredient") Ingredient ingredient) {
+    public ModelAndView save(@ModelAttribute(value = "ingredient") Ingredient ingredient,
+                             @ModelAttribute(value = "measure") Measure measure) {
 
         System.out.println("Set ingredient index1");
         ingredient.setId(Ingredient.index++);
@@ -104,6 +117,7 @@ public class NoteController {
         List<Ingredient> listlist = new ArrayList<>();
         List<Ingredient> listlist1 = new ArrayList<>();
 
+        ingredient.setMeasure(measure);
         itemIngredientList = new ArrayList<>();
         itemIngredientList.add(ingredient);
         System.out.println("itemIngredientList" + itemIngredientList);
@@ -125,9 +139,10 @@ public class NoteController {
     }
 
     Note noteToView = new Note();
+
     @RequestMapping(value = "/viewone", method = RequestMethod.POST)
     public ModelAndView show(@RequestParam(value = "note_id") String note_id) {
-        noteToView = noteList.get(Math.toIntExact((getNoteById(Integer.parseInt(note_id))).getId()-1));
+        noteToView = noteList.get(Math.toIntExact((getNoteById(Integer.parseInt(note_id))).getId() - 1));
         System.out.println(noteToView.getRecipe().getId());
         return new ModelAndView("recipes/viewone", "noteToView", noteToView);
     }

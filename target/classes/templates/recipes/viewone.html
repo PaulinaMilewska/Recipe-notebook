@@ -11,11 +11,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-        #zegar {
-            width: 600px;
-            font-size: 40px;
-            font-family: 'Jokerman';
-        }
 
         table, th, td {
             border: 1px solid black;
@@ -41,15 +36,27 @@
             width: 670px;
             height: 400px;
         }
+
         a.tilelink {
             color: black;
             text-decoration: none;
         }
+
+
+        #zegar {
+            width: 600px;
+            font-size: 40px;
+            font-family: 'Jokerman';
+        }
     </style>
 
     <title>Your recipe</title>
+
+
     <script src="timer.js"></script>
 </head>
+
+
 <body onload="odliczanie()">
 <div id="container">
     <div id="logo">
@@ -58,7 +65,7 @@
 
     <div id="work_space">
         <br>
-        <i ><a href="viewnotes.html" class="tilelink">BACK HOME</a></i>
+        <i><a href="viewnotes.html" class="tilelink">BACK HOME</a></i>
         <br><br>
         <table>
 
@@ -74,7 +81,6 @@
             </tr>
             </thead>
             <tbody>
-            <!--*******************************************************-->
 
             <tr>
                 <td th:text="${noteToView.getRecipe().getId()}"></td>
@@ -87,7 +93,7 @@
 
             </tbody>
         </table>
-        <div id="zegar">///</div>
+
     </div>
 </div>
 

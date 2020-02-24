@@ -42,7 +42,7 @@
             text-decoration: none;
         }
 
-        /* ----- div zegar: -----*/
+
         #zegar {
             width: 600px;
             font-size: 40px;
@@ -52,11 +52,11 @@
 
     <title>Your recipe</title>
 
-    /* ----- ścieżka do js: -----*/
+
     <script src="timer.js"></script>
 </head>
 
-    /* ----- onload funkcji odliczanie() z js: -----*/
+
 <body onload="odliczanie()">
 <div id="container">
     <div id="logo">
@@ -81,7 +81,6 @@
             </tr>
             </thead>
             <tbody>
-            <!--*******************************************************-->
 
             <tr>
                 <td th:text="${noteToView.getRecipe().getId()}"></td>
@@ -95,9 +94,6 @@
             </tbody>
         </table>
 
-<!-- div pod tabelką -->
-
-        <div id="zegar">///</div>
     </div>
 </div>
 

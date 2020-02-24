@@ -8,8 +8,6 @@
             width: 400px;
             margin-left: auto;
             margin-right: auto;
-            /*background-color: #0088cc;*/
-            /*text-align: center;*/
         }
 
         #logo {
@@ -45,23 +43,19 @@
                    placeholder="Description of preparation"><br>
             <input type="text" th:field="*{recipe.preparingTimeInMinutes}" placeholder="Preparation time"><br>
             <input type="text" th:field="*{recipe.cost}" placeholder="Cost"><br>
-            <input type="text" th:field="*{recipe.degree}" placeholder="Degree***"><br>
-<!--            <select>-->
-<!--                <option th:each="state : ${T(recipes.mainProject.DegreesOfDifficulty).toString()}" th:value="${state}" th:text="${state}"></option>-->
-<!--            </select>-->
-<!--            <select  >-->
-<!--                <option value="${recipe.degree}">United Stated</option>-->
-<!--                <option value="CHINA">China</option>-->
-<!--                <option value="SG">Singapore</option>-->
-<!--                <option value="MY">Malaysia</option>-->
-<!--            </select>-->
-<!--            <form:select th:each="state: ${T(recipes.mainProject.DegreesOfDifficulty).}"-->
-<!--                         th:value="state" th:text="${state}"></form:select>-->
+            <!--            <input type="text" th:field="*{recipe.degree}" placeholder="Degree***"><br>-->
+            <select class="form-control" name="difficulty" required>
+                <option value="default">Select degree</option>
+                <option th:each="difficulty : ${difficultyList}"
+                        th:value="${difficulty}"
+                        th:text="${difficulty}">
+                </option>
+            </select>
+            <br>
+
             <input type="submit" th:value="Save">
         </form>
-        <br><br>
-        <p><b>***Degree to choose:</b> </p>
-        <i>VERY EASY/ EASY/ MEDIUM/ HARD/ EXTRA HARD</i>
+
     </div>
 </div>
 </body>
